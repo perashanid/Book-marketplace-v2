@@ -123,11 +123,20 @@ if (!MONGODB_URI) {
 
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+  socketTimeoutMS: 45000, // Close sockets after 45s of inactivity
 })
-  .then(() => console.log('✅ Connected to MongoDB'))
+  .then(() => {
+    console.log('✅ Connected to MongoDB');
+    console.log('Database:', mongoose.connection.name);
+  })
   .catch(err => {
     console.error('❌ MongoDB connection error:', err.message);
+    console.error('Connection string format check:');
+    console.error('- Should start with: mongodb+srv://');
+    console.error('- Should contain cluster name like: cluster0.xxxxx.mongodb.net');
+    console.error('- Should end with database name');
     process.exit(1);
   });
 
