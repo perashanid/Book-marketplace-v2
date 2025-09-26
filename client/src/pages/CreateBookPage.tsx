@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import api from '../utils/api';
 
@@ -333,7 +334,7 @@ const CreateBookPage: React.FC = () => {
                     className="remove-image-btn"
                     title="Remove image"
                   >
-                    ×
+                    <X size={16} />
                   </button>
                 </div>
               ))}

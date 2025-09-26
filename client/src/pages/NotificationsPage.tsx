@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Check } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 interface Notification {
@@ -145,7 +146,7 @@ const NotificationsPage: React.FC = () => {
             </div>
           ) : (
             <div>
-              <h3>📭 No notifications yet</h3>
+              <h3>No notifications yet</h3>
               <p>When you start buying, selling, or trading books, you'll see notifications here.</p>
             </div>
           )}
@@ -184,7 +185,7 @@ const NotificationsPage: React.FC = () => {
                       onClick={() => markAsRead(notification._id)}
                       title="Mark as read"
                     >
-                      ✓
+                      <Check size={16} />
                     </button>
                   )}
                 </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import { BookOpen, Flame, DollarSign, RefreshCw } from 'lucide-react';
 import api from '../utils/api';
 
 interface Book {
@@ -358,11 +359,11 @@ const BookListPage: React.FC = () => {
                     alt={book.title}
                   />
                 ) : (
-                  <div className="book-card-placeholder">📚</div>
+                  <div className="book-card-placeholder"><BookOpen size={48} /></div>
                 )}
                 <div className={`book-card-badge ${book.listingType}`}>
-                  {book.listingType === 'auction' ? '🔨' : 
-                   book.listingType === 'fixed-price' ? '💰' : '🔄'}
+                  {book.listingType === 'auction' ? <Flame size={14} /> : 
+                   book.listingType === 'fixed-price' ? <DollarSign size={14} /> : <RefreshCw size={14} />}
                 </div>
               </div>
               

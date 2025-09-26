@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { BookOpen } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import api from '../utils/api';
 
@@ -311,7 +312,7 @@ const ProfilePage: React.FC = () => {
                   display: 'inline-block'
                 }}
               >
-                📚 Sell a Book
+                <BookOpen size={16} /> Sell a Book
               </Link>
               
               <Link
@@ -325,7 +326,7 @@ const ProfilePage: React.FC = () => {
                   display: 'inline-block'
                 }}
               >
-                🔍 Browse Books
+                Browse Books
               </Link>
             </div>
           </div>

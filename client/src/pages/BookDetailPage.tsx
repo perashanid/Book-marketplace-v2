@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { FileText, Flame, DollarSign, RefreshCw, X, Check } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useSocket } from '../context/SocketContext';
 import api from '../utils/api';
@@ -361,7 +362,7 @@ const BookDetailPage: React.FC = () => {
                 rel="noopener noreferrer"
                 style={{ color: '#007bff', textDecoration: 'none' }}
               >
-                📄 View PDF
+                <FileText size={16} /> View PDF
               </a>
             </div>
           )}
@@ -371,7 +372,7 @@ const BookDetailPage: React.FC = () => {
             {/* Auction Section */}
             {book.listingTypes?.auction && (
               <div className="listing-section auction-section">
-                <h3 className="listing-title">🔥 Auction</h3>
+                <h3 className="listing-title"><Flame size={20} /> Auction</h3>
                 <p><strong>Current Bid:</strong> {formatPrice(book.currentBid || book.startingBid || 0)}</p>
                 <p><strong>Starting Bid:</strong> {formatPrice(book.startingBid || 0)}</p>
                 
@@ -407,7 +408,7 @@ const BookDetailPage: React.FC = () => {
             {/* Fixed Price Section */}
             {book.listingTypes?.fixedPrice && (
               <div className="listing-section fixed-price-section">
-                <h3 className="listing-title">💰 Fixed Price</h3>
+                <h3 className="listing-title"><DollarSign size={20} /> Fixed Price</h3>
                 <p className="price-display">{formatPrice(book.fixedPrice || 0)}</p>
 
                 {user && !isOwner && (
@@ -457,7 +458,7 @@ const BookDetailPage: React.FC = () => {
             {/* Trade Only Section */}
             {book.listingTypes?.tradeOnly && (
               <div className="listing-section trade-section">
-                <h3 className="listing-title">🔄 Trade Only</h3>
+                <h3 className="listing-title"><RefreshCw size={20} /> Trade Only</h3>
                 <p>This book is available for trade only. Propose a trade with your own books.</p>
                 
                 {user && !isOwner && (
@@ -508,7 +509,7 @@ const BookDetailPage: React.FC = () => {
           <div className="modal-content">
             <div className="modal-header">
               <h2>Propose Trade</h2>
-              <button onClick={() => setShowTradeModal(false)} className="modal-close">×</button>
+              <button onClick={() => setShowTradeModal(false)} className="modal-close"><X size={20} /></button>
             </div>
             
             <div className="modal-body">
@@ -538,7 +539,7 @@ const BookDetailPage: React.FC = () => {
                         <p className="book-condition">{userBook.condition}</p>
                       </div>
                       <div className="selection-indicator">
-                        {selectedTradeBooks.includes(userBook._id) ? '✓' : ''}
+                        {selectedTradeBooks.includes(userBook._id) ? <Check size={16} /> : ''}
                       </div>
                     </div>
                   ))}

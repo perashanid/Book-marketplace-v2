@@ -12,11 +12,9 @@ import {
   BookOpen, 
   Shield, 
   Star,
-  Download,
   Gift,
   Rocket,
   Eye,
-  Zap,
   Users,
   Globe,
   TrendingUp
@@ -227,6 +225,9 @@ const HomePage: React.FC = () => {
       <section className="hero">
         <div className="hero-background"></div>
         <div className="hero-content">
+          <div className="hero-logo">
+            <img src="/book-logo.svg" alt="Book Marketplace" className="hero-logo-image" />
+          </div>
           <div className="hero-badge">
             <span className="badge-icon"><Star size={16} /></span>
             New: Free PDF Library Now Available!

@@ -50,6 +50,26 @@
   z-index: 2;
 }
 
+.hero-logo {
+  margin-bottom: 2rem;
+}
+
+.hero-logo-image {
+  width: 120px;
+  height: 120px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .hero-badge {
   display: inline-flex;
   align-items: center;

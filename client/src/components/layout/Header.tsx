@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
-import { 
-  Sun, 
-  Moon, 
-  Search, 
-  FileText, 
-  Plus, 
-  BarChart3, 
-  ArrowLeftRight, 
-  DollarSign, 
-  Bell, 
-  User, 
+import {
+  Sun,
+  Moon,
+  Search,
+  FileText,
+  Plus,
+  BarChart3,
+  ArrowLeftRight,
+  DollarSign,
+  Bell,
+  User,
   Wallet,
   LogOut
 } from 'lucide-react';
@@ -52,7 +52,7 @@ const Header: React.FC = () => {
     <header className="header">
       <div className="header-container">
         <Link to="/" className="logo">
-          <div className="logo-icon">BM</div>
+          <img src="/book-logo.svg" alt="Book Marketplace" className="logo-image" />
           <h1>BookMarket</h1>
         </Link>
 
@@ -73,7 +73,7 @@ const Header: React.FC = () => {
               </Link>
             )}
           </div>
-          
+
           <div className="nav-actions">
             {user ? (
               <div className="user-menu">
@@ -115,7 +115,7 @@ const Header: React.FC = () => {
           </div>
         </nav>
 
-        <button 
+        <button
           className="mobile-menu-toggle"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >

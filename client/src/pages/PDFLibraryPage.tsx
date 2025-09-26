@@ -465,7 +465,7 @@ const PDFLibraryPage: React.FC = () => {
 
         {sortedBooks.length === 0 && (
           <div className="text-center py-12">
-            <div className="text-6xl mb-4">📚</div>
+            <div className="text-6xl mb-4"><BookOpen size={96} /></div>
             <h3 className="text-xl font-semibold mb-2">No books found</h3>
             <p className="text-secondary">Try adjusting your search or filters</p>
           </div>

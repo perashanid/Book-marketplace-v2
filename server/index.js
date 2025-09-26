@@ -17,14 +17,31 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173", // Vite default port
-    methods: ["GET", "POST"]
+    origin: process.env.NODE_ENV === 'production' 
+      ? [
+          "https://bookmarketplace-frontend.onrender.com",
+          "https://bookmarketplace-frontend-*.onrender.com",
+          /^https:\/\/.*\.onrender\.com$/
+        ] 
+      : ["http://localhost:5173", "http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
 // Middleware
-app.use(cors());
-app.use(express.json());
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? [
+        "https://bookmarketplace-frontend.onrender.com",
+        "https://bookmarketplace-frontend-*.onrender.com",
+        /^https:\/\/.*\.onrender\.com$/
+      ] 
+    : ["http://localhost:5173", "http://localhost:3000"],
+  credentials: true
+}));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -93,11 +110,16 @@ app.use('/api/balance', balanceRoutes);
 app.use('/api/socket', socketRoutes);
 
 // MongoDB connection
-const MONGODB_URI = 'mongodb+srv://shanidsajjatuzislamrabid:hwKc2iTXYDMvuJ3B@shanidsajjatuzislamrabi.8uafjnj.mongodb.net/bookmarketplace';
+const MONGODB_URI = process.env.MONGODB_URI;
 
 console.log('Environment check:');
 console.log('NODE_ENV:', process.env.NODE_ENV || 'development');
-console.log('Using MongoDB URI directly');
+console.log('MONGODB_URI exists:', !!MONGODB_URI);
+
+if (!MONGODB_URI) {
+  console.error('❌ MONGODB_URI environment variable is not set');
+  process.exit(1);
+}
 
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,

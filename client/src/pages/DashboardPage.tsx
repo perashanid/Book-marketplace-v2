@@ -197,7 +197,7 @@ const DashboardPage: React.FC = () => {
       <div className="dashboard-header">
         <div className="header-content">
           <div className="welcome-section">
-            <h1 className="dashboard-title">Welcome back, {user?.username}! 👋</h1>
+            <h1 className="dashboard-title">Welcome back, {user?.username}!</h1>
             <p className="dashboard-subtitle">Manage your books, trades, and earnings all in one place</p>
           </div>
           <div className="header-actions">
