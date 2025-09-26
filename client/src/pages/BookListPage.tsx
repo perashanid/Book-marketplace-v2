@@ -71,7 +71,7 @@ const BookListPage: React.FC = () => {
       });
 
       const response = await api.get(`/api/books?${params}`);
-      
+
       if (response.data.success) {
         setBooks(response.data.data.books);
         setPagination(response.data.data.pagination);
@@ -147,8 +147,8 @@ const BookListPage: React.FC = () => {
       if (filters.condition && book.condition !== filters.condition) return false;
       if (filters.search) {
         const searchLower = filters.search.toLowerCase();
-        return book.title.toLowerCase().includes(searchLower) || 
-               book.author.toLowerCase().includes(searchLower);
+        return book.title.toLowerCase().includes(searchLower) ||
+          book.author.toLowerCase().includes(searchLower);
       }
       return true;
     });
@@ -177,13 +177,13 @@ const BookListPage: React.FC = () => {
     const now = new Date().getTime();
     const end = new Date(endTime).getTime();
     const remaining = end - now;
-    
+
     if (remaining <= 0) return 'Ended';
-    
+
     const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
     const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-    
+
     if (days > 0) return `${days}d ${hours}h`;
     if (hours > 0) return `${hours}h ${minutes}m`;
     return `${minutes}m`;
@@ -204,10 +204,10 @@ const BookListPage: React.FC = () => {
     <div className="page-container">
       <div className="page-header">
         <h1 className="page-title">Browse Books</h1>
-        
+
         {/* Quick Filter Buttons */}
         <div className="quick-filters">
-          <button 
+          <button
             className={`filter-btn ${filters.listingType === '' ? 'active' : ''}`}
             onClick={() => handleFilterChange('listingType', '')}
           >
@@ -215,21 +215,21 @@ const BookListPage: React.FC = () => {
             All Books
             <span className="filter-count">({pagination.totalCount})</span>
           </button>
-          <button 
+          <button
             className={`filter-btn ${filters.listingType === 'auction' ? 'active' : ''}`}
             onClick={() => handleFilterChange('listingType', 'auction')}
           >
             <span className="filter-icon">Bid</span>
             Auctions
           </button>
-          <button 
+          <button
             className={`filter-btn ${filters.listingType === 'fixed-price' ? 'active' : ''}`}
             onClick={() => handleFilterChange('listingType', 'fixed-price')}
           >
             <span className="filter-icon">Buy</span>
             Buy Now
           </button>
-          <button 
+          <button
             className={`filter-btn ${filters.listingType === 'trade-only' ? 'active' : ''}`}
             onClick={() => handleFilterChange('listingType', 'trade-only')}
           >
@@ -238,7 +238,7 @@ const BookListPage: React.FC = () => {
           </button>
         </div>
       </div>
-      
+
       {/* Advanced Filters */}
       <div className="filters-container">
         <h3 style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>Advanced Filters</h3>
@@ -250,7 +250,7 @@ const BookListPage: React.FC = () => {
             onChange={(e) => handleFilterChange('search', e.target.value)}
             className="filter-input"
           />
-          
+
           <select
             value={filters.category}
             onChange={(e) => handleFilterChange('category', e.target.value)}
@@ -264,7 +264,7 @@ const BookListPage: React.FC = () => {
             <option value="history">History</option>
             <option value="biography">Biography</option>
           </select>
-          
+
           <select
             value={filters.condition}
             onChange={(e) => handleFilterChange('condition', e.target.value)}
@@ -277,7 +277,7 @@ const BookListPage: React.FC = () => {
             <option value="fair">Fair</option>
             <option value="poor">Poor</option>
           </select>
-          
+
           <select
             value={filters.listingType}
             onChange={(e) => handleFilterChange('listingType', e.target.value)}
@@ -289,7 +289,7 @@ const BookListPage: React.FC = () => {
             <option value="trade-only">Trade Only</option>
           </select>
         </div>
-        
+
         <div className="filters-row">
           <input
             type="number"
@@ -307,7 +307,7 @@ const BookListPage: React.FC = () => {
             className="filter-input"
             style={{ width: '120px' }}
           />
-          
+
           <select
             value={`${filters.sortBy}-${filters.sortOrder}`}
             onChange={(e) => {
@@ -340,9 +340,9 @@ const BookListPage: React.FC = () => {
             Found {pagination.totalCount} books
             {filters.listingType && (
               <span className="active-filter">
-                {' '}in {filters.listingType === 'fixed-price' ? 'Buy Now' : 
-                        filters.listingType === 'trade-only' ? 'Trade Only' : 
-                        filters.listingType === 'auction' ? 'Auctions' : 'All'}
+                {' '}in {filters.listingType === 'fixed-price' ? 'Buy Now' :
+                  filters.listingType === 'trade-only' ? 'Trade Only' :
+                    filters.listingType === 'auction' ? 'Auctions' : 'All'}
               </span>
             )}
           </p>
@@ -364,11 +364,11 @@ const BookListPage: React.FC = () => {
                   <div className="book-card-placeholder"><BookOpen size={48} /></div>
                 )}
                 <div className={`book-card-badge ${book.listingType}`}>
-                  {book.listingType === 'auction' ? <Flame size={14} /> : 
-                   book.listingType === 'fixed-price' ? <DollarSign size={14} /> : <RefreshCw size={14} />}
+                  {book.listingType === 'auction' ? <Flame size={14} /> :
+                    book.listingType === 'fixed-price' ? <DollarSign size={14} /> : <RefreshCw size={14} />}
                 </div>
               </div>
-              
+
               <div className="book-card-content">
                 <h3 className="book-card-title">{book.title}</h3>
                 <p className="book-card-author">by {book.author}</p>
@@ -376,7 +376,7 @@ const BookListPage: React.FC = () => {
                   <p className="book-card-condition">Condition: {book.condition}</p>
                   <p className="book-card-seller">Category: {book.category}</p>
                 </div>
-              
+
                 <div className="book-card-footer">
                   {book.listingType === 'auction' && (
                     <div>
@@ -390,20 +390,20 @@ const BookListPage: React.FC = () => {
                       )}
                     </div>
                   )}
-                  
+
                   {book.listingType === 'fixed-price' && (
                     <p className="book-card-price">
                       Price: {formatPrice(book.fixedPrice || 0)}
                     </p>
                   )}
-                  
+
                   {book.listingType === 'trade-only' && (
                     <p className="book-card-price trade">
                       Trade Only
                     </p>
                   )}
                 </div>
-                
+
                 <p className="book-card-seller">Seller: {book.seller.username}</p>
               </div>
             </Link>
@@ -433,11 +433,11 @@ const BookListPage: React.FC = () => {
           >
             Previous
           </button>
-          
+
           <span style={{ padding: '0.5rem 1rem', alignSelf: 'center' }}>
             Page {pagination.currentPage} of {pagination.totalPages}
           </span>
-          
+
           <button
             onClick={() => handlePageChange(pagination.currentPage + 1)}
             disabled={!pagination.hasNextPage}

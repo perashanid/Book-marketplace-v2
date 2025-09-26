@@ -18,6 +18,7 @@ import OffersPage from './pages/OffersPage';
 import NotificationsPage from './pages/NotificationsPage';
 import SearchPage from './pages/SearchPage';
 import DashboardPage from './pages/DashboardPage';
+import ContactPage from './pages/ContactPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import './App.css';
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/auctions/:id" element={<AuctionPage />} />
                 <Route path="/search" element={<SearchPage />} />
                 <Route path="/pdf-library" element={<PDFLibraryPage />} />
+                <Route path="/contact" element={<ContactPage />} />
                 <Route 
                   path="/profile" 
                   element={

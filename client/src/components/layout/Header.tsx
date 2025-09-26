@@ -12,7 +12,8 @@ import {
   Bell,
   User,
   Wallet,
-  LogOut
+  LogOut,
+  MessageCircle
 } from 'lucide-react';
 import './Header.css';
 
@@ -63,6 +64,10 @@ const Header: React.FC = () => {
             <Link to="/pdf-library" className="nav-link" onClick={closeMenu}>
               <FileText size={16} />
               Free PDFs
+            </Link>
+            <Link to="/contact" className="nav-link" onClick={closeMenu}>
+              <MessageCircle size={16} />
+              Contact
             </Link>
             {user && (
               <Link to="/dashboard" className="nav-link" onClick={closeMenu}>
