@@ -54,7 +54,9 @@ const BookListPage: React.FC = () => {
     currentPage: 1,
     totalPages: 1,
     totalCount: 0,
-    limit: 12
+    limit: 12,
+    hasNextPage: false,
+    hasPrevPage: false
   });
 
   const fetchBooks = async (page = 1) => {

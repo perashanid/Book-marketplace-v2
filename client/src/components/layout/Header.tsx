@@ -9,8 +9,6 @@ import {
   FileText,
   Plus,
   BarChart3,
-  ArrowLeftRight,
-  DollarSign,
   Bell,
   User,
   Wallet,
@@ -19,7 +17,7 @@ import {
 import './Header.css';
 
 const Header: React.FC = () => {
-  const { user, logout, login } = useAuth();
+  const { user, logout } = useAuth();
   const { isDarkMode, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();

@@ -5,12 +5,12 @@ import {
   Plus, 
   X, 
   Download, 
-  Star, 
   Calendar, 
   FileText, 
   Tag, 
   BarChart3,
-  ExternalLink
+  ExternalLink,
+  BookOpen
 } from 'lucide-react';
 
 interface PDFBook {

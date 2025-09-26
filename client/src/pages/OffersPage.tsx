@@ -24,7 +24,7 @@ interface Offer {
 }
 
 const OffersPage: React.FC = () => {
-  const { user } = useAuth();
+  const { } = useAuth();
   const [sentOffers, setSentOffers] = useState<Offer[]>([]);
   const [receivedOffers, setReceivedOffers] = useState<Offer[]>([]);
   const [loading, setLoading] = useState(true);

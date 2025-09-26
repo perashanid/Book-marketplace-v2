@@ -26,7 +26,7 @@ const AuctionPage: React.FC = () => {
   
   const [book, setBook] = useState<Book | null>(null);
   const [bidAmount, setBidAmount] = useState('');
-  const [timeRemaining, setTimeRemaining] = useState('');
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
