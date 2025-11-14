@@ -1,39 +1,21 @@
 services:
-  # Backend API Service
   - type: web
-    name: bookmarketplace-api
+    name: bookmarketplace
     env: node
+    region: oregon
     plan: free
-    buildCommand: cd server && npm install
-    startCommand: cd server && npm start
-    healthCheckPath: /health
+    buildCommand: npm run build
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 10000
+      - key: MONGODB_URI
+        sync: false
       - key: JWT_SECRET
         generateValue: true
-      - key: JWT_EXPIRES_IN
-        value: 7d
-      - key: MONGODB_URI
-        fromDatabase:
-          name: bookmarketplace-db
-          property: connectionString
-
-  # Frontend Static Site
-  - type: web
-    name: bookmarketplace-frontend
-    env: static
-    plan: free
-    buildCommand: cd client && npm install && npm run build
-    staticPublishPath: ./client/dist
-    envVars:
-      - key: VITE_API_URL
-        value: https://bookmarketplace-api.onrender.com
-
-databases:
-  - name: bookmarketplace-db
-    databaseName: bookmarketplace
-    user: bookmarketplace
-    plan: free
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PORT
+        value: 10000
