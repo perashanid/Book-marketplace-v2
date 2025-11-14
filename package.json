@@ -6,11 +6,10 @@
     "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
     "server:dev": "cd server && npm run dev",
     "client:dev": "cd client && npm run dev",
-    "build": "cd client && npm run build",
-    "start": "cd server && npm start",
-    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
-    "build:server": "cd server && npm install",
-    "build:client": "cd client && npm install && npm run build"
+    "build": "npm run install:all && npm run build:client",
+    "start": "cd server && NODE_ENV=production npm start",
+    "install:all": "cd server && npm install && cd ../client && npm install",
+    "build:client": "cd client && npm run build"
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
