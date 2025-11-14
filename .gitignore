@@ -84,3 +84,5 @@ jspm_packages/
 .Trashes
 ehthumbs.db
 Thumbs.db
+server/test-gemini-v2.js
+RENDER_DEPLOYMENT_GUIDE.md
