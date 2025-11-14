@@ -46,8 +46,8 @@
 .filter-btn.active {
   border-color: var(--primary-color);
   background: var(--primary-color);
-  color: white;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  color: var(--bg-tertiary);
+  box-shadow: 0 4px 12px rgba(246, 173, 85, 0.3);
 }
 
 .filter-btn.active:hover {
@@ -160,7 +160,7 @@
 
 .view-btn.active {
   background: var(--primary-color);
-  color: white;
+  color: var(--bg-tertiary);
   border-color: var(--primary-color);
 }
 
@@ -262,6 +262,7 @@
 .tab-button.active {
   color: var(--primary-color);
   border-bottom-color: var(--primary-color);
+  background: rgba(246, 173, 85, 0.1);
 }
 
 /* Stats Cards */
@@ -480,11 +481,12 @@
 }
 
 .dashboard-header {
-  background: var(--gradient-primary);
+  background: var(--bg-secondary);
   border-radius: 2rem;
   padding: 2rem;
   margin-bottom: 2rem;
   color: white;
+  border: 2px solid var(--primary-color);
 }
 
 .header-content {
@@ -552,7 +554,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: var(--gradient-primary);
+  background: var(--primary-color);
 }
 
 .modern-stat-card:hover {
@@ -560,10 +562,10 @@
   box-shadow: 0 20px 40px var(--shadow-lg);
 }
 
-.balance-card::before { background: linear-gradient(135deg, #10b981, #059669); }
-.books-card::before { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-.auctions-card::before { background: linear-gradient(135deg, #f59e0b, #d97706); }
-.earnings-card::before { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+.balance-card::before { background: #48bb78; }
+.books-card::before { background: #63b3ed; }
+.auctions-card::before { background: #fc8181; }
+.earnings-card::before { background: #f6ad55; }
 
 .stat-header {
   display: flex;
@@ -667,8 +669,8 @@
 }
 
 .modern-action-card.primary-action {
-  background: var(--gradient-primary);
-  color: white;
+  background: var(--primary-color);
+  color: var(--bg-tertiary);
   border: none;
 }
 
