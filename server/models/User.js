@@ -28,6 +28,14 @@ const userSchema = new mongoose.Schema({
     default: 1000,
     min: [0, 'Balance cannot be negative']
   },
+  googleId: {
+    type: String,
+    unique: true,
+    sparse: true
+  },
+  profilePicture: {
+    type: String
+  },
   books: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Book'

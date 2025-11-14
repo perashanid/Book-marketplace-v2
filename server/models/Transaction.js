@@ -80,6 +80,25 @@ const transactionSchema = new mongoose.Schema({
   timestamps: true
 });
 
+// Post-save hook to update user activity summary
+transactionSchema.post('save', async function(doc) {
+  if (doc.status === 'completed' && doc.buyer) {
+    try {
+      const UserPreference = mongoose.model('UserPreference');
+      let prefs = await UserPreference.findOne({ user: doc.buyer });
+      
+      if (!prefs) {
+        prefs = await UserPreference.create({ user: doc.buyer });
+      }
+      
+      // Update activity summary asynchronously
+      await prefs.updateActivitySummary();
+    } catch (error) {
+      console.error('Failed to update user activity summary:', error);
+    }
+  }
+});
+
 // Index for efficient queries
 transactionSchema.index({ buyer: 1, createdAt: -1 });
 transactionSchema.index({ seller: 1, createdAt: -1 });

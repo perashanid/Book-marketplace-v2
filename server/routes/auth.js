@@ -1,10 +1,12 @@
 const express = require('express');
+const { OAuth2Client } = require('google-auth-library');
 const { User } = require('../models');
 const { generateToken } = require('../utils/jwt');
 const { validate, registerSchema, loginSchema, updateProfileSchema } = require('../utils/validation');
 const { authenticateToken } = require('../middleware/auth');
 
 const router = express.Router();
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // Register new user
 router.post('/register', validate(registerSchema), async (req, res) => {
@@ -220,6 +222,87 @@ router.get('/verify', authenticateToken, (req, res) => {
       user: req.user
     }
   });
+});
+
+// Google OAuth login
+router.post('/google', async (req, res) => {
+  try {
+    const { credential } = req.body;
+
+    if (!credential) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 'MISSING_CREDENTIAL',
+          message: 'Google credential is required'
+        }
+      });
+    }
+
+    // Verify Google token
+    const ticket = await googleClient.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID
+    });
+
+    const payload = ticket.getPayload();
+    const { email, name, sub: googleId, picture } = payload;
+
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        error: {
+          code: 'INVALID_TOKEN',
+          message: 'Email not found in Google token'
+        }
+      });
+    }
+
+    // Check if user exists
+    let user = await User.findOne({ email });
+
+    if (user) {
+      // Update Google ID if not set
+      if (!user.googleId) {
+        user.googleId = googleId;
+        user.profilePicture = picture;
+        await user.save();
+      }
+    } else {
+      // Create new user
+      const username = email.split('@')[0] + Math.floor(Math.random() * 1000);
+      user = new User({
+        username,
+        email,
+        googleId,
+        profilePicture: picture,
+        password: Math.random().toString(36).slice(-8) + 'Aa1!' // Random password (won't be used)
+      });
+      await user.save();
+    }
+
+    // Generate token
+    const token = generateToken(user._id);
+
+    res.json({
+      success: true,
+      data: {
+        user: user.toJSON(),
+        token
+      },
+      message: 'Google login successful'
+    });
+  } catch (error) {
+    console.error('Google OAuth error:', error);
+    res.status(500).json({
+      success: false,
+      error: {
+        code: 'GOOGLE_AUTH_ERROR',
+        message: 'Failed to authenticate with Google',
+        details: error.message
+      }
+    });
+  }
 });
 
 module.exports = router;
