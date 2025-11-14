@@ -33,7 +33,8 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
   useEffect(() => {
     if (token) {
       // Initialize socket connection
-      const socketInstance = io(import.meta.env.VITE_API_URL || 'http://localhost:5000', {
+      const socketInstance = io(import.meta.env.VITE_API_URL || 
+        (import.meta.env.PROD ? window.location.origin : 'http://localhost:5000'), {
         auth: {
           token
         },
