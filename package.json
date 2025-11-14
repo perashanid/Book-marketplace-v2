@@ -1,7 +1,7 @@
 {
-  "name": "bookmarket",
+  "name": "bookverse",
   "version": "1.0.0",
-  "description": "Complete Book Marketplace with Trading, Auctions, and PDF Library",
+  "description": "Bookverse - Complete Book Marketplace with Trading, Auctions, and PDF Library",
   "scripts": {
     "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
     "server:dev": "cd server && npm run dev",

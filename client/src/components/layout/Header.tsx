@@ -52,8 +52,8 @@ const Header: React.FC = () => {
     <header className="header">
       <div className="header-container">
         <Link to="/" className="logo">
-          <img src="/logo.png" alt="Book Marketplace" className="logo-image" />
-          <h1>BookMarket</h1>
+          <img src="/logo.png" alt="Bookverse" className="logo-image" />
+          <h1>Bookverse</h1>
         </Link>
 
         <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>

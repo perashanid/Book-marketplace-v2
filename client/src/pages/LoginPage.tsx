@@ -63,7 +63,7 @@ const LoginPage: React.FC = () => {
       <div className="auth-container">
         <div className="auth-card">
           <h2>Welcome Back</h2>
-          <p>Sign in to your BookMarket account</p>
+          <p>Sign in to your Bookverse account</p>
 
           {error && <div className="error-message">{error}</div>}
 

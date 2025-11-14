@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
           <div className="footer-section footer-brand">
             <div className="footer-logo">
               <BookOpen className="logo-icon" size={32} />
-              <h3>BookMarket</h3>
+              <h3>Bookverse</h3>
             </div>
             <p className="footer-tagline">
               Your trusted marketplace for buying, selling, and trading books.
@@ -103,7 +103,7 @@ const Footer: React.FC = () => {
         <div className="footer-bottom">
           <div className="footer-bottom-content">
             <div className="footer-copyright">
-              <p>&copy; {currentYear} BookMarket. All rights reserved.</p>
+              <p>&copy; {currentYear} Bookverse. All rights reserved.</p>
             </div>
             <div className="footer-legal">
               <a href="#terms">Terms of Service</a>

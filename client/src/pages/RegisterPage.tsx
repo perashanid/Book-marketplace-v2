@@ -77,7 +77,7 @@ const RegisterPage: React.FC = () => {
     <div className="auth-page">
       <div className="auth-container">
         <div className="auth-card">
-          <h2>Join BookMarket</h2>
+          <h2>Join Bookverse</h2>
           <p>Create your account and start trading books</p>
 
           {error && <div className="error-message">{error}</div>}

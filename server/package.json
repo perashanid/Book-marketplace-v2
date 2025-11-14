@@ -1,7 +1,7 @@
 {
-  "name": "bookmarketplace-server",
+  "name": "bookverse-server",
   "version": "1.0.0",
-  "description": "Book Marketplace Backend API",
+  "description": "Bookverse Backend API",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

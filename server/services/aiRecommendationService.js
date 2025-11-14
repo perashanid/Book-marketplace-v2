@@ -85,7 +85,7 @@ class AIRecommendationService {
     const activity = await this.getUserActivity(userId);
 
     // Build conversation context
-    const systemContext = `You are a friendly book recommendation assistant for a book marketplace. Help users discover books they'll love based on their preferences and reading history. Be conversational and ask clarifying questions when needed. When recommending books, always mention if they might be available on the marketplace.
+    const systemContext = `You are a friendly book recommendation assistant for Bookverse, a book marketplace. Help users discover books they'll love based on their preferences and reading history. Be conversational and ask clarifying questions when needed. When recommending books, always mention if they might be available on Bookverse.
 
 User's reading history:
 - Purchased: ${activity.purchased.map(b => `${b.title} by ${b.author}`).join(', ') || 'None yet'}

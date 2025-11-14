@@ -19,7 +19,7 @@ const ContactPage: React.FC = () => {
             <h2>Shanid Sajjatuz</h2>
             <p className="contact-role">Full Stack Developer</p>
             <p className="contact-description">
-              Creator of BookMarket - A modern platform for buying, selling, and trading books. 
+              Creator of Bookverse - A modern platform for buying, selling, and trading books. 
               Feel free to reach out for any questions, feedback, or collaboration opportunities.
             </p>
           </div>
@@ -81,14 +81,14 @@ const ContactPage: React.FC = () => {
               <h3>Send a Message</h3>
             </div>
             <p className="contact-form-description">
-              Have a question about BookMarket or want to provide feedback? 
+              Have a question about Bookverse or want to provide feedback? 
               Send me an email using the link above or connect with me on social media.
             </p>
             
             <div className="contact-features">
               <div className="feature-item">
                 <h4>🚀 Feature Requests</h4>
-                <p>Got an idea to improve BookMarket? I'd love to hear it!</p>
+                <p>Got an idea to improve Bookverse? I'd love to hear it!</p>
               </div>
               <div className="feature-item">
                 <h4>🐛 Bug Reports</h4>

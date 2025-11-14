@@ -61,7 +61,7 @@ const BalanceService = require('./services/balanceService');
 
 // Basic route
 app.get('/', (req, res) => {
-  res.json({ message: 'Book Marketplace API is running!' });
+  res.json({ message: 'Bookverse API is running!' });
 });
 
 // Health check route

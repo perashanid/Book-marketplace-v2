@@ -1,4 +1,4 @@
-# Book Marketplace
+# Bookverse
 
 A MERN stack web application for buying, selling, auctioning, and trading books.
 

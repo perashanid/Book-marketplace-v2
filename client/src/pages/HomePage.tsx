@@ -126,11 +126,11 @@ const HomePage: React.FC = () => {
         <div className="hero-background"></div>
         <div className="hero-content">
           <div className="hero-logo">
-            <img src="/book-logo.svg" alt="Book Marketplace" className="hero-logo-image" />
+            <img src="/book-logo.svg" alt="Bookverse" className="hero-logo-image" />
           </div>
 
           <h1 className="hero-title">
-            The Ultimate <span className="gradient-text">Book Marketplace</span>
+            Welcome to <span className="gradient-text">Bookverse</span>
           </h1>
           <p className="hero-subtitle">
             Buy, sell, auction, and trade books with fellow readers worldwide. 
@@ -349,7 +349,7 @@ const HomePage: React.FC = () => {
       <section className="features">
         <div className="container">
           <div className="section-header">
-            <h2>Why Choose BookMarket?</h2>
+            <h2>Why Choose Bookverse?</h2>
             <p>Everything you need to buy, sell, and trade books online</p>
           </div>
           
@@ -441,7 +441,7 @@ const HomePage: React.FC = () => {
                 <Star size={16} fill="currentColor" />
               </div>
               <p className="testimonial-text">
-                "I've sold over 50 textbooks on BookMarket and saved hundreds of dollars buying used books. 
+                "I've sold over 50 textbooks on Bookverse and saved hundreds of dollars buying used books. 
                 The auction feature is fantastic!"
               </p>
               <div className="testimonial-author">
@@ -487,7 +487,7 @@ const HomePage: React.FC = () => {
                 <Star size={16} fill="currentColor" />
               </div>
               <p className="testimonial-text">
-                "As a teacher, I love finding affordable books for my classroom. BookMarket has been a 
+                "As a teacher, I love finding affordable books for my classroom. Bookverse has been a 
                 game-changer for building my library on a budget."
               </p>
               <div className="testimonial-author">
