@@ -1,0 +1,229 @@
+/* Trade Page Styles */
+.trade-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: calc(100vh - 200px);
+}
+
+.trade-header {
+  margin-bottom: 2rem;
+}
+
+.trade-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.trade-tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 2rem;
+}
+
+.trade-tab {
+  padding: 1rem 1.5rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trade-tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+.trade-tab.active {
+  color: var(--info-color);
+  border-bottom-color: var(--info-color);
+}
+
+.trade-proposals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+.trade-proposal-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.trade-proposal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.trade-status-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.trade-status-badge.pending {
+  background: var(--info-light);
+  color: var(--info-color);
+}
+
+.trade-status-badge.accepted {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.trade-status-badge.rejected {
+  background: var(--error-light);
+  color: var(--error);
+}
+
+.trade-books-section {
+  margin: 1rem 0;
+}
+
+.trade-books-section h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.trade-book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.trade-book-item-small {
+  padding: 0.75rem;
+  background: var(--bg-primary);
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.trade-book-item-small h5 {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+}
+
+.trade-book-item-small p {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.trade-message {
+  padding: 1rem;
+  background: var(--bg-primary);
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  margin: 1rem 0;
+}
+
+.trade-message p {
+  margin: 0;
+  color: var(--text-primary);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.trade-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.trade-actions .btn {
+  flex: 1;
+}
+
+.trade-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-secondary);
+}
+
+.trade-empty h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .trade-proposals-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .trade-page {
+    padding: 1rem;
+  }
+  
+  .trade-title {
+    font-size: 1.75rem;
+  }
+  
+  .trade-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .trade-tab {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+  
+  .trade-proposals-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .trade-proposal-card {
+    padding: 1.25rem;
+  }
+  
+  .trade-actions {
+    flex-direction: column;
+  }
+  
+  .trade-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .trade-page {
+    padding: 0.75rem;
+  }
+  
+  .trade-title {
+    font-size: 1.5rem;
+  }
+  
+  .trade-proposal-card {
+    padding: 1rem;
+  }
+  
+  .trade-books-section h4 {
+    font-size: 0.9375rem;
+  }
+}

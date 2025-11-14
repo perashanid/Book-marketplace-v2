@@ -1,0 +1,248 @@
+/* PDF Library Page Styles */
+.pdf-library-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: calc(100vh - 200px);
+}
+
+.pdf-library-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pdf-library-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.pdf-library-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+
+.pdf-filters {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pdf-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.pdf-books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.pdf-book-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.pdf-book-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px var(--shadow);
+  border-color: var(--accent-primary);
+}
+
+.pdf-book-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
+
+.pdf-book-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.pdf-book-card:hover .pdf-book-image img {
+  transform: scale(1.1);
+}
+
+.pdf-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--accent-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.community-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--success);
+  color: white;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.pdf-book-content {
+  padding: 1.5rem;
+}
+
+.pdf-book-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.pdf-book-author {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin: 0 0 1rem 0;
+  font-style: italic;
+}
+
+.pdf-book-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.meta-icon {
+  color: var(--accent-primary);
+}
+
+.pdf-book-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pdf-book-actions .btn {
+  flex: 1;
+  font-size: 0.875rem;
+  padding: 0.625rem 1rem;
+}
+
+.pdf-empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-secondary);
+}
+
+.pdf-empty-state h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .pdf-library-page {
+    padding: 1.5rem;
+  }
+  
+  .pdf-books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .pdf-library-page {
+    padding: 1rem;
+  }
+  
+  .pdf-library-title {
+    font-size: 1.75rem;
+  }
+  
+  .pdf-library-subtitle {
+    font-size: 1rem;
+  }
+  
+  .pdf-filters {
+    padding: 1rem;
+  }
+  
+  .pdf-filters-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pdf-books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .pdf-book-content {
+    padding: 1.25rem;
+  }
+  
+  .pdf-book-actions {
+    flex-direction: column;
+  }
+  
+  .pdf-book-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .pdf-library-page {
+    padding: 0.75rem;
+  }
+  
+  .pdf-library-title {
+    font-size: 1.5rem;
+  }
+  
+  .pdf-library-subtitle {
+    font-size: 0.875rem;
+  }
+  
+  .pdf-books-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pdf-book-image {
+    height: 180px;
+  }
+  
+  .pdf-book-content {
+    padding: 1rem;
+  }
+  
+  .pdf-book-title {
+    font-size: 1rem;
+  }
+}

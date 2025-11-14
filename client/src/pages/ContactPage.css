@@ -160,9 +160,16 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .contact-content {
+    max-width: 90%;
+  }
+}
+
 @media (max-width: 768px) {
   .contact-content {
     padding: 0 1rem;
+    max-width: 100%;
   }
 
   .contact-intro {
@@ -174,13 +181,28 @@
     font-size: 1.5rem;
   }
 
+  .contact-avatar {
+    width: 64px;
+    height: 64px;
+  }
+
   .contact-method {
     padding: 1rem;
+    flex-direction: column;
+    text-align: center;
   }
 
   .contact-icon {
     width: 40px;
     height: 40px;
+  }
+
+  .contact-info h3 {
+    font-size: 1.125rem;
+  }
+
+  .contact-link {
+    font-size: 1rem;
   }
 
   .contact-form-section {
@@ -189,6 +211,70 @@
 
   .feature-item {
     padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-content {
+    padding: 0 0.75rem;
+  }
+
+  .contact-intro {
+    padding: 1rem;
+  }
+
+  .contact-intro h2 {
+    font-size: 1.25rem;
+  }
+
+  .contact-role {
+    font-size: 1rem;
+  }
+
+  .contact-description {
+    font-size: 0.875rem;
+  }
+
+  .contact-avatar {
+    width: 56px;
+    height: 56px;
+  }
+
+  .contact-method {
+    padding: 0.875rem;
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .contact-info h3 {
+    font-size: 1rem;
+  }
+
+  .contact-link {
+    font-size: 0.9375rem;
+  }
+
+  .contact-form-section {
+    padding: 1rem;
+  }
+
+  .contact-form-header h3 {
+    font-size: 1.125rem;
+  }
+
+  .feature-item {
+    padding: 0.875rem;
+  }
+
+  .feature-item h4 {
+    font-size: 0.9375rem;
+  }
+
+  .feature-item p {
+    font-size: 0.8125rem;
   }
 }
 

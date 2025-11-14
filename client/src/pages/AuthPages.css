@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  background: var(--gradient-primary);
+  background: var(--bg-tertiary);
   transition: background 0.3s ease;
 }
 
@@ -150,6 +150,43 @@
   box-shadow: none;
 }
 
+/* Google Login Divider */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: var(--text-secondary);
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.auth-divider span {
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Google Login Container */
+.google-login-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.google-login-container > div {
+  width: 100% !important;
+}
+
+.google-login-container iframe {
+  width: 100% !important;
+}
+
 .auth-footer {
   text-align: center;
   margin-top: 2rem;
@@ -174,12 +211,79 @@
   text-decoration: underline;
 }
 
+@media (max-width: 768px) {
+  .auth-page {
+    padding: 1.5rem 1rem;
+    min-height: 70vh;
+  }
+  
+  .auth-container {
+    max-width: 100%;
+  }
+  
+  .auth-card {
+    padding: 1.75rem;
+  }
+  
+  .auth-card h2 {
+    font-size: 1.5rem;
+  }
+  
+  .form-group input {
+    font-size: 0.9375rem;
+  }
+  
+  .auth-btn {
+    font-size: 0.9375rem;
+  }
+}
+
 @media (max-width: 480px) {
   .auth-page {
-    padding: 1rem;
+    padding: 1rem 0.75rem;
   }
   
   .auth-card {
     padding: 1.5rem;
+  }
+  
+  .auth-card h2 {
+    font-size: 1.25rem;
+  }
+  
+  .auth-card > p {
+    font-size: 0.875rem;
+  }
+  
+  .form-group label {
+    font-size: 0.875rem;
+  }
+  
+  .form-group input {
+    padding: 0.625rem;
+    font-size: 0.875rem;
+  }
+  
+  .password-toggle-btn {
+    right: 0.625rem;
+    font-size: 1rem;
+  }
+  
+  .auth-btn {
+    padding: 0.625rem;
+    font-size: 0.875rem;
+  }
+  
+  .auth-divider {
+    margin: 1.25rem 0;
+  }
+  
+  .auth-divider span {
+    font-size: 0.8125rem;
+  }
+  
+  .error-message {
+    padding: 0.625rem;
+    font-size: 0.875rem;
   }
 }
