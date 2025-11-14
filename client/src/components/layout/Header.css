@@ -43,10 +43,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: 1.75rem;
   font-weight: 800;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--gradient-primary);
   letter-spacing: -0.025em;
 }
 
@@ -99,13 +96,13 @@
 .nav-link[href="/books"] {
   font-weight: 600;
   color: var(--accent-primary);
-  background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(103, 58, 183, 0.1));
+  background: rgba(79, 172, 254, 0.1);
   border: 1px solid rgba(79, 172, 254, 0.2);
 }
 
 .nav-link[href="/books"]:hover {
   color: var(--accent-primary);
-  background: linear-gradient(135deg, rgba(79, 172, 254, 0.15), rgba(103, 58, 183, 0.15));
+  background: rgba(79, 172, 254, 0.15);
   border-color: rgba(79, 172, 254, 0.3);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(79, 172, 254, 0.2);
@@ -148,13 +145,13 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--gradient-accent);
-  color: white;
+  background: var(--primary-color);
+  color: var(--bg-tertiary);
   padding: 0.5rem 1rem;
   border-radius: 0.75rem;
   font-weight: 600;
   font-size: 0.875rem;
-  box-shadow: 0 2px 8px rgba(79, 172, 254, 0.3);
+  box-shadow: 0 2px 8px rgba(246, 173, 85, 0.3);
 }
 
 .auth-links {
@@ -188,13 +185,40 @@
 }
 
 /* Mobile Styles */
+@media (max-width: 992px) {
+  .header-container {
+    padding: 0 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .nav {
+    gap: 0.25rem;
+  }
+  
+  .nav-link {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8125rem;
+  }
+}
+
 @media (max-width: 768px) {
   .header-container {
     padding: 0 1rem;
+    gap: 1rem;
+  }
+  
+  .logo h1 {
+    font-size: 1.5rem;
+  }
+  
+  .logo-image {
+    width: 36px;
+    height: 36px;
   }
   
   .mobile-menu-toggle {
     display: flex;
+    margin-left: auto;
   }
   
   .nav {
@@ -204,17 +228,21 @@
     right: 0;
     background: var(--bg-primary);
     border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     flex-direction: column;
     gap: 0;
     padding: 1rem;
-    transform: translateY(-100%);
+    margin-left: 0;
+    max-height: 0;
+    overflow: hidden;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px var(--shadow);
   }
   
-  .nav-open {
-    transform: translateY(0);
+  .nav.nav-open {
+    max-height: 600px;
     opacity: 1;
     visibility: visible;
   }
@@ -228,8 +256,13 @@
   
   .nav-link {
     width: 100%;
-    justify-content: center;
-    padding: 1rem;
+    justify-content: flex-start;
+    padding: 0.875rem 1rem;
+    font-size: 0.9375rem;
+  }
+  
+  .nav-link[href="/books"] {
+    justify-content: flex-start;
   }
   
   .user-menu {
@@ -244,13 +277,52 @@
     gap: 0.5rem;
   }
   
+  .auth-links .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
   .balance {
+    width: 100%;
     justify-content: center;
   }
   
   .theme-toggle {
     width: 100%;
     justify-content: center;
+  }
+  
+  .theme-toggle-text {
+    display: inline;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0 0.75rem;
+  }
+  
+  .logo h1 {
+    font-size: 1.25rem;
+  }
+  
+  .logo-image {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .nav {
+    padding: 0.75rem;
+  }
+  
+  .nav-link {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .balance {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.875rem;
   }
 }
 
@@ -272,4 +344,32 @@
 
 .nav-open ~ .mobile-menu-toggle span:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -6px);
+}
+/* 
+AI Recommendations Link */
+.nav-link.ai-link {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-link.ai-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.nav-link.ai-link svg {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+  }
 }
