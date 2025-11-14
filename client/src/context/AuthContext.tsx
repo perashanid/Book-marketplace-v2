@@ -14,6 +14,7 @@ interface AuthContextType {
   token: string | null;
   login: (email: string, password: string) => Promise<void>;
   register: (username: string, email: string, password: string) => Promise<void>;
+  googleLogin: (credential: string) => Promise<void>;
   logout: () => void;
   loading: boolean;
   updateUser: (userData: Partial<User>) => void;
@@ -126,6 +127,30 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
+  const googleLogin = async (credential: string) => {
+    try {
+      const response = await api.post('/api/auth/google', { credential });
+      
+      if (response.data.success) {
+        const { user: userData, token: authToken } = response.data.data;
+        setUser(userData);
+        setToken(authToken);
+        localStorage.setItem('token', authToken);
+      } else {
+        throw new Error(response.data.error?.message || 'Google login failed');
+      }
+    } catch (error: any) {
+      console.error('Google login error:', error);
+      
+      if (error.code === 'ERR_NETWORK' || error.code === 'ECONNREFUSED') {
+        throw new Error('Unable to connect to server. Please make sure the server is running.');
+      }
+      
+      const message = error.response?.data?.error?.message || error.message || 'Google login failed';
+      throw new Error(message);
+    }
+  };
+
   const logout = () => {
     setUser(null);
     setToken(null);
@@ -143,6 +168,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     token,
     login,
     register,
+    googleLogin,
     logout,
     loading,
     updateUser
