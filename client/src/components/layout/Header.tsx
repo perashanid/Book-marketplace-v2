@@ -52,7 +52,7 @@ const Header: React.FC = () => {
     <header className="header">
       <div className="header-container">
         <Link to="/" className="logo">
-          <img src="/book-logo.svg" alt="Book Marketplace" className="logo-image" />
+          <img src="/logo.png" alt="Book Marketplace" className="logo-image" />
           <h1>BookMarket</h1>
         </Link>
 
