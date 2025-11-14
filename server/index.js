@@ -3,6 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
+const path = require('path');
 require('dotenv').config();
 
 // Set environment variables if not loaded from .env
@@ -18,11 +19,7 @@ const server = createServer(app);
 const io = new Server(server, {
   cors: {
     origin: process.env.NODE_ENV === 'production' 
-      ? [
-          "https://bookmarketplace-frontend.onrender.com",
-          "https://bookmarketplace-frontend-*.onrender.com",
-          /^https:\/\/.*\.onrender\.com$/
-        ] 
+      ? process.env.FRONTEND_URL || true
       : ["http://localhost:5173", "http://localhost:3000"],
     methods: ["GET", "POST"],
     credentials: true
@@ -32,16 +29,17 @@ const io = new Server(server, {
 // Middleware
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? [
-        "https://bookmarketplace-frontend.onrender.com",
-        "https://bookmarketplace-frontend-*.onrender.com",
-        /^https:\/\/.*\.onrender\.com$/
-      ] 
+    ? process.env.FRONTEND_URL || true
     : ["http://localhost:5173", "http://localhost:3000"],
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Serve static files from React build in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+}
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -52,6 +50,7 @@ const offerRoutes = require('./routes/offers');
 const tradeRoutes = require('./routes/trades');
 const balanceRoutes = require('./routes/balance');
 const socketRoutes = require('./routes/socket');
+const aiRoutes = require('./routes/ai');
 
 // Import services
 const SocketService = require('./services/socketService');
@@ -108,6 +107,14 @@ app.use('/api/offers', offerRoutes);
 app.use('/api/trades', tradeRoutes);
 app.use('/api/balance', balanceRoutes);
 app.use('/api/socket', socketRoutes);
+app.use('/api/ai', aiRoutes);
+
+// Serve React app for all non-API routes in production
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  });
+}
 
 // MongoDB connection
 const MONGODB_URI = process.env.MONGODB_URI;
