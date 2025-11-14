@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider } from './context/AuthContext';
 import { SocketProvider } from './context/SocketContext';
 import { ThemeProvider } from './context/ThemeContext';
@@ -12,6 +13,7 @@ import BookDetailPage from './pages/BookDetailPage';
 import ProfilePage from './pages/ProfilePage';
 import CreateBookPage from './pages/CreateBookPage';
 import PDFLibraryPage from './pages/PDFLibraryPage';
+import './styles/mobile-responsive.css';
 import AuctionPage from './pages/AuctionPage';
 import TradePage from './pages/TradePage';
 import OffersPage from './pages/OffersPage';
@@ -19,7 +21,9 @@ import NotificationsPage from './pages/NotificationsPage';
 import SearchPage from './pages/SearchPage';
 import DashboardPage from './pages/DashboardPage';
 import ContactPage from './pages/ContactPage';
+import AIRecommendationsPage from './pages/AIRecommendationsPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import { GOOGLE_CLIENT_ID } from './config/env';
 
 import './App.css';
 import './components/common/BookCard.css';
@@ -27,10 +31,11 @@ import './styles/pages.css';
 
 function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <SocketProvider>
-          <Router>
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+      <ThemeProvider>
+        <AuthProvider>
+          <SocketProvider>
+            <Router>
           <div className="app">
             <Header />
             <main className="main-content">
@@ -92,14 +97,23 @@ function App() {
                     </ProtectedRoute>
                   } 
                 />
+                <Route 
+                  path="/ai-recommendations" 
+                  element={
+                    <ProtectedRoute>
+                      <AIRecommendationsPage />
+                    </ProtectedRoute>
+                  } 
+                />
               </Routes>
             </main>
             <Footer />
           </div>
           </Router>
-        </SocketProvider>
-      </AuthProvider>
-    </ThemeProvider>
+          </SocketProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </GoogleOAuthProvider>
   );
 }
 

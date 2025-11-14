@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { BookOpen, Flame, DollarSign, RefreshCw } from 'lucide-react';
 import api from '../utils/api';
+import './BookListPage.css';
 
 interface Book {
   _id: string;
@@ -78,80 +79,11 @@ const BookListPage: React.FC = () => {
       }
     } catch (err: any) {
       console.error('Failed to fetch books:', err);
-      // Fallback to mock data
-      setBooks(getMockBooksForListing());
-      setPagination({
-        currentPage: 1,
-        totalPages: 1,
-        totalCount: 15,
-        hasNextPage: false,
-        hasPrevPage: false,
-        limit: 12
-      });
-      setError('Server not available - showing demo data');
+      setBooks([]);
+      setError('Failed to load books. Please try again later.');
     } finally {
       setLoading(false);
     }
-  };
-
-  const getMockBooksForListing = (): Book[] => {
-    const allMockBooks: Book[] = [
-      {
-        _id: '1',
-        title: 'The Great Gatsby',
-        author: 'F. Scott Fitzgerald',
-        description: 'A classic American novel set in the Jazz Age.',
-        condition: 'like-new',
-        category: 'Fiction',
-        images: ['https://images.unsplash.com/photo-1544947950-fa07a98d237f.jpg'],
-        listingType: 'auction' as const,
-        currentBid: 15.00,
-        startingBid: 15.00,
-        auctionEndTime: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
-        isAuctionActive: true,
-        seller: { _id: '1', username: 'bookworm123' },
-        createdAt: new Date().toISOString()
-      },
-      {
-        _id: '2',
-        title: 'Introduction to Algorithms',
-        author: 'Thomas H. Cormen',
-        description: 'Comprehensive textbook on algorithms.',
-        condition: 'good',
-        category: 'Textbook',
-        images: ['https://images.unsplash.com/photo-1532012197267-da84d127e765.jpg'],
-        listingType: 'fixed-price' as const,
-        fixedPrice: 85.00,
-        seller: { _id: '2', username: 'readerlover' },
-        createdAt: new Date().toISOString()
-      },
-      {
-        _id: '3',
-        title: 'To Kill a Mockingbird',
-        author: 'Harper Lee',
-        description: 'Pulitzer Prize-winning novel.',
-        condition: 'fair',
-        category: 'Fiction',
-        images: ['https://images.unsplash.com/photo-1481627834876-b7833e8f5570.jpg'],
-        listingType: 'trade-only' as const,
-        seller: { _id: '3', username: 'novelenthusiast' },
-        createdAt: new Date().toISOString()
-      }
-      // Add more mock books as needed
-    ];
-
-    // Filter based on current filters
-    return allMockBooks.filter(book => {
-      if (filters.listingType && book.listingType !== filters.listingType) return false;
-      if (filters.category && book.category !== filters.category) return false;
-      if (filters.condition && book.condition !== filters.condition) return false;
-      if (filters.search) {
-        const searchLower = filters.search.toLowerCase();
-        return book.title.toLowerCase().includes(searchLower) ||
-          book.author.toLowerCase().includes(searchLower);
-      }
-      return true;
-    });
   };
 
   useEffect(() => {

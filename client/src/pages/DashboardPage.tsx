@@ -18,6 +18,7 @@ import {
   ShoppingCart,
   X
 } from 'lucide-react';
+import './DashboardPage.css';
 
 // Default cover images for PDFs without covers
 const DEFAULT_PDF_COVERS = [

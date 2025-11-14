@@ -12,7 +12,6 @@ import {
   BookOpen, 
   Shield, 
   Star,
-  Gift,
   Rocket,
   Eye,
   Users,
@@ -56,7 +55,6 @@ const HomePage: React.FC = () => {
   const { user } = useAuth();
   const [featuredBooks, setFeaturedBooks] = useState<Book[]>([]);
   const [booksLoading, setBooksLoading] = useState(true);
-  const [isServerAvailable, setIsServerAvailable] = useState(true);
   const [stats, setStats] = useState({
     totalBooks: 0,
     activeAuctions: 0,
@@ -65,21 +63,9 @@ const HomePage: React.FC = () => {
   });
 
   useEffect(() => {
-    checkServerHealth();
     fetchFeaturedBooks();
     fetchStats();
   }, []);
-
-  const checkServerHealth = async () => {
-    try {
-      const response = await api.get('/health');
-      console.log('Server health check:', response.data);
-      setIsServerAvailable(true);
-    } catch (error) {
-      console.warn('Server health check failed - using mock data');
-      setIsServerAvailable(false);
-    }
-  };
 
   const fetchFeaturedBooks = async () => {
     try {
@@ -87,87 +73,13 @@ const HomePage: React.FC = () => {
       const response = await api.get('/api/books?limit=6&sortBy=createdAt&sortOrder=desc');
       if (response.data.success) {
         setFeaturedBooks(response.data.data.books);
-      } else {
-        // If API returns but no books, still show mock data for demo
-        setFeaturedBooks(getMockBooks());
       }
     } catch (error) {
       console.error('Failed to fetch featured books:', error);
-      // Fallback to mock data if API is not available
-      setFeaturedBooks(getMockBooks());
+      setFeaturedBooks([]);
     } finally {
       setBooksLoading(false);
     }
-  };
-
-  const getMockBooks = (): Book[] => {
-    return [
-      {
-        _id: '1',
-        title: 'The Great Gatsby',
-        author: 'F. Scott Fitzgerald',
-        condition: 'like-new',
-        listingType: 'auction' as const,
-        currentBid: 15.00,
-        startingBid: 15.00,
-        auctionEndTime: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
-        isAuctionActive: true,
-        images: ['https://images.unsplash.com/photo-1544947950-fa07a98d237f.jpg'],
-        seller: { _id: '1', username: 'bookworm123' }
-      },
-      {
-        _id: '2',
-        title: 'Introduction to Algorithms',
-        author: 'Thomas H. Cormen',
-        condition: 'good',
-        listingType: 'fixed-price' as const,
-        fixedPrice: 85.00,
-        images: ['https://images.unsplash.com/photo-1532012197267-da84d127e765.jpg'],
-        seller: { _id: '2', username: 'readerlover' }
-      },
-      {
-        _id: '3',
-        title: 'To Kill a Mockingbird',
-        author: 'Harper Lee',
-        condition: 'fair',
-        listingType: 'trade-only' as const,
-        images: ['https://images.unsplash.com/photo-1481627834876-b7833e8f5570.jpg'],
-        seller: { _id: '3', username: 'novelenthusiast' }
-      },
-      {
-        _id: '4',
-        title: 'A Brief History of Time',
-        author: 'Stephen Hawking',
-        condition: 'good',
-        listingType: 'fixed-price' as const,
-        fixedPrice: 22.50,
-        images: ['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d.jpg'],
-        seller: { _id: '4', username: 'sciencefan' }
-      },
-      {
-        _id: '5',
-        title: 'The Catcher in the Rye',
-        author: 'J.D. Salinger',
-        condition: 'good',
-        listingType: 'auction' as const,
-        currentBid: 18.50,
-        startingBid: 12.00,
-        auctionEndTime: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString(),
-        isAuctionActive: true,
-        images: ['https://images.unsplash.com/photo-1512820790803-83ca734da794.jpg'],
-        seller: { _id: '5', username: 'textbooktrader' }
-      },
-      {
-        _id: '6',
-        title: 'Clean Code',
-        author: 'Robert C. Martin',
-        condition: 'good',
-        listingType: 'fixed-price' as const,
-        fixedPrice: 35.00,
-        images: ['https://images.unsplash.com/photo-1515879218367-8466d910aaa4.jpg'],
-        seller: { _id: '6', username: 'codingmaster' }
-      }
-    ];
   };
 
   const fetchStats = async () => {
@@ -207,19 +119,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="home-page">
-      {/* Demo Mode Banner */}
-      {!isServerAvailable && (
-        <div className="demo-banner">
-          <div className="container">
-            <div className="demo-banner-content">
-              <span className="demo-icon"><Gift size={20} /></span>
-              <div>
-                <strong>Demo Mode:</strong> Server is not available. Showing sample data for demonstration.
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+
 
       {/* Hero Section */}
       <section className="hero">
@@ -228,10 +128,7 @@ const HomePage: React.FC = () => {
           <div className="hero-logo">
             <img src="/book-logo.svg" alt="Book Marketplace" className="hero-logo-image" />
           </div>
-          <div className="hero-badge">
-            <span className="badge-icon"><Star size={16} /></span>
-            New: Free PDF Library Now Available!
-          </div>
+
           <h1 className="hero-title">
             The Ultimate <span className="gradient-text">Book Marketplace</span>
           </h1>
@@ -353,6 +250,101 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* Categories Section */}
+      <section className="categories-section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Browse by Category</h2>
+            <p>Find exactly what you're looking for</p>
+          </div>
+          
+          <div className="categories-grid">
+            <Link to="/books?category=fiction" className="category-card">
+              <div className="category-image">
+                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&h=400&fit=crop" alt="Fiction" />
+                <div className="category-overlay"></div>
+              </div>
+              <div className="category-content">
+                <h3>Fiction</h3>
+                <p>Novels, Stories & More</p>
+              </div>
+            </Link>
+            
+            <Link to="/books?category=non-fiction" className="category-card">
+              <div className="category-image">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop" alt="Non-Fiction" />
+                <div className="category-overlay"></div>
+              </div>
+              <div className="category-content">
+                <h3>Non-Fiction</h3>
+                <p>Biography, History & Essays</p>
+              </div>
+            </Link>
+            
+            <Link to="/books?category=textbooks" className="category-card">
+              <div className="category-image">
+                <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&h=400&fit=crop" alt="Textbooks" />
+                <div className="category-overlay"></div>
+              </div>
+              <div className="category-content">
+                <h3>Textbooks</h3>
+                <p>Academic & Educational</p>
+              </div>
+            </Link>
+            
+            <Link to="/books?category=children" className="category-card">
+              <div className="category-image">
+                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=600&h=400&fit=crop" alt="Children's Books" />
+                <div className="category-overlay"></div>
+              </div>
+              <div className="category-content">
+                <h3>Children's Books</h3>
+                <p>Stories for Young Readers</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="how-it-works">
+        <div className="container">
+          <div className="section-header">
+            <h2>How It Works</h2>
+            <p>Start buying, selling, and trading in three simple steps</p>
+          </div>
+          
+          <div className="steps-grid">
+            <div className="step-card">
+              <div className="step-number">1</div>
+              <div className="step-image">
+                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500&h=300&fit=crop" alt="Create Account" />
+              </div>
+              <h3>Create Your Account</h3>
+              <p>Sign up for free in seconds. No credit card required to start browsing and listing books.</p>
+            </div>
+            
+            <div className="step-card">
+              <div className="step-number">2</div>
+              <div className="step-image">
+                <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=500&h=300&fit=crop" alt="List or Browse" />
+              </div>
+              <h3>List or Browse Books</h3>
+              <p>Upload your books with photos and descriptions, or browse thousands of listings from other readers.</p>
+            </div>
+            
+            <div className="step-card">
+              <div className="step-number">3</div>
+              <div className="step-image">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop" alt="Complete Transaction" />
+              </div>
+              <h3>Buy, Sell, or Trade</h3>
+              <p>Complete secure transactions through our platform. Rate your experience and build your reputation.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="features">
         <div className="container">
@@ -426,6 +418,87 @@ const HomePage: React.FC = () => {
                 Connect with book lovers worldwide. Share reviews, recommendations, 
                 and build your reading network.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="testimonials">
+        <div className="container">
+          <div className="section-header">
+            <h2>What Our Users Say</h2>
+            <p>Join thousands of satisfied book lovers</p>
+          </div>
+          
+          <div className="testimonials-grid">
+            <div className="testimonial-card">
+              <div className="testimonial-rating">
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+              </div>
+              <p className="testimonial-text">
+                "I've sold over 50 textbooks on BookMarket and saved hundreds of dollars buying used books. 
+                The auction feature is fantastic!"
+              </p>
+              <div className="testimonial-author">
+                <div className="author-avatar">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Sarah" />
+                </div>
+                <div>
+                  <div className="author-name">Sarah Johnson</div>
+                  <div className="author-role">College Student</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="testimonial-card">
+              <div className="testimonial-rating">
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+              </div>
+              <p className="testimonial-text">
+                "The book trading feature is amazing! I've discovered so many great reads by exchanging books 
+                with other members. Highly recommend!"
+              </p>
+              <div className="testimonial-author">
+                <div className="author-avatar">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Michael" />
+                </div>
+                <div>
+                  <div className="author-name">Michael Chen</div>
+                  <div className="author-role">Book Enthusiast</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="testimonial-card">
+              <div className="testimonial-rating">
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+              </div>
+              <p className="testimonial-text">
+                "As a teacher, I love finding affordable books for my classroom. BookMarket has been a 
+                game-changer for building my library on a budget."
+              </p>
+              <div className="testimonial-author">
+                <div className="author-avatar">
+                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Emily" />
+                </div>
+                <div>
+                  <div className="author-name">Emily Rodriguez</div>
+                  <div className="author-role">Elementary Teacher</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

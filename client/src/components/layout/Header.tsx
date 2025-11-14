@@ -13,7 +13,8 @@ import {
   User,
   Wallet,
   LogOut,
-  MessageCircle
+  MessageCircle,
+  Sparkles
 } from 'lucide-react';
 import './Header.css';
 
@@ -70,10 +71,16 @@ const Header: React.FC = () => {
               Contact
             </Link>
             {user && (
-              <Link to="/dashboard" className="nav-link" onClick={closeMenu}>
-                <BarChart3 size={16} />
-                Dashboard
-              </Link>
+              <>
+                <Link to="/ai-recommendations" className="nav-link ai-link" onClick={closeMenu}>
+                  <Sparkles size={16} />
+                  AI Recommendations
+                </Link>
+                <Link to="/dashboard" className="nav-link" onClick={closeMenu}>
+                  <BarChart3 size={16} />
+                  Dashboard
+                </Link>
+              </>
             )}
           </div>
 

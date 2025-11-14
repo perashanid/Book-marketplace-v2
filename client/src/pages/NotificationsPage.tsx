@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Check } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import './NotificationsPage.css';
 
 interface Notification {
   _id: string;

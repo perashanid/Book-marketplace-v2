@@ -4,6 +4,8 @@ import { FileText, Flame, DollarSign, RefreshCw, X, Check } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useSocket } from '../context/SocketContext';
 import api from '../utils/api';
+import SimilarBooksWidget from '../components/ai/SimilarBooksWidget';
+import './BookDetailPage.css';
 
 interface Book {
   _id: string;
@@ -575,6 +577,9 @@ const BookDetailPage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* AI-Powered Similar Books */}
+      {user && <SimilarBooksWidget bookId={book._id} />}
     </div>
   );
 };

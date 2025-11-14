@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import './PDFLibraryPage.css';
 import { 
   Plus, 
   X, 
@@ -91,106 +92,10 @@ const PDFLibraryPage: React.FC = () => {
     'Self-Help'
   ];
 
-  // Mock data for free PDF books
-  const mockBooks: PDFBook[] = [
-    {
-      id: '1',
-      title: 'The Great Gatsby',
-      author: 'F. Scott Fitzgerald',
-      description: 'A classic American novel exploring themes of wealth, love, and the American Dream in the Jazz Age.',
-      category: 'Literature',
-      downloadUrl: '#',
-      coverImage: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f.jpg',
-      fileSize: '2.1 MB',
-      pages: 180,
-      language: 'English',
-      publishedYear: 1925,
-      downloads: 15420,
-      rating: 4.2
-    },
-    {
-      id: '2',
-      title: 'Pride and Prejudice',
-      author: 'Jane Austen',
-      description: 'A romantic novel that critiques the British landed gentry at the end of the 18th century.',
-      category: 'Literature',
-      downloadUrl: '#',
-      coverImage: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c.jpg',
-      fileSize: '1.8 MB',
-      pages: 432,
-      language: 'English',
-      publishedYear: 1813,
-      downloads: 12350,
-      rating: 4.5
-    },
-    {
-      id: '3',
-      title: 'The Art of War',
-      author: 'Sun Tzu',
-      description: 'An ancient Chinese military treatise dating from the Late Spring and Autumn Period.',
-      category: 'Philosophy',
-      downloadUrl: '#',
-      coverImage: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73.jpg',
-      fileSize: '1.2 MB',
-      pages: 96,
-      language: 'English',
-      publishedYear: -500,
-      downloads: 8920,
-      rating: 4.0
-    },
-    {
-      id: '4',
-      title: 'A Brief History of Time',
-      author: 'Stephen Hawking',
-      description: 'A landmark volume in science writing that explores cosmology and the nature of time.',
-      category: 'Science',
-      downloadUrl: '#',
-      coverImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d.jpg',
-      fileSize: '3.5 MB',
-      pages: 256,
-      language: 'English',
-      publishedYear: 1988,
-      downloads: 18750,
-      rating: 4.7
-    },
-    {
-      id: '5',
-      title: 'The Wealth of Nations',
-      author: 'Adam Smith',
-      description: 'An inquiry into the nature and causes of the wealth of nations - foundational economics text.',
-      category: 'Business',
-      downloadUrl: '#',
-      coverImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f.jpg',
-      fileSize: '4.2 MB',
-      pages: 720,
-      language: 'English',
-      publishedYear: 1776,
-      downloads: 6540,
-      rating: 4.1
-    },
-    {
-      id: '6',
-      title: 'Frankenstein',
-      author: 'Mary Shelley',
-      description: 'A Gothic novel that tells the story of Victor Frankenstein and his creation.',
-      category: 'Fiction',
-      downloadUrl: '#',
-      coverImage: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570.jpg',
-      fileSize: '2.3 MB',
-      pages: 280,
-      language: 'English',
-      publishedYear: 1818,
-      downloads: 9870,
-      rating: 4.3
-    }
-  ];
-
   useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      setBooks(mockBooks);
-      setLoading(false);
-    }, 1000);
+    // TODO: Fetch PDF books from API
+    setBooks([]);
+    setLoading(false);
 
     // Listen for custom event to open PDF modal from dashboard
     const handleOpenPDFModal = () => {
