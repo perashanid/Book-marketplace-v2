@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const AIRecommendationService = require('../services/aiRecommendationService');
-const auth = require('../middleware/auth');
+const { authenticateToken: auth } = require('../middleware/auth');
 const UserPreference = require('../models/UserPreference');
 
 const aiService = new AIRecommendationService();
