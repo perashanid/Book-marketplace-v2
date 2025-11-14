@@ -1,0 +1,484 @@
+/* 
+ * Comprehensive Mobile Responsive Styles
+ * This file ensures all components are mobile-friendly
+ */
+
+/* ===================================
+   GLOBAL MOBILE FIXES
+   =================================== */
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+}
+
+/* Prevent horizontal scroll */
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===================================
+   TOUCH-FRIENDLY ELEMENTS
+   =================================== */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets */
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"],
+  input[type="checkbox"],
+  input[type="radio"],
+  select {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better spacing for touch */
+  .btn {
+    padding: 0.875rem 1.5rem;
+  }
+  
+  /* Larger form inputs */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="url"],
+  textarea,
+  select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.875rem 1rem;
+  }
+}
+
+/* ===================================
+   RESPONSIVE IMAGES
+   =================================== */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===================================
+   RESPONSIVE TABLES
+   =================================== */
+
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ===================================
+   MOBILE NAVIGATION FIXES
+   =================================== */
+
+@media (max-width: 768px) {
+  /* Prevent body scroll when mobile menu is open */
+  body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+  
+  /* Full-width mobile buttons */
+  .mobile-full-width {
+    width: 100%;
+    display: block;
+  }
+}
+
+/* ===================================
+   RESPONSIVE GRID LAYOUTS
+   =================================== */
+
+@media (max-width: 1200px) {
+  .grid-cols-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .grid-cols-4,
+  .grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-cols-4,
+  .grid-cols-3,
+  .grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Stack flex items on mobile */
+  .flex-wrap-mobile {
+    flex-wrap: wrap;
+  }
+  
+  .flex-col-mobile {
+    flex-direction: column;
+  }
+}
+
+/* ===================================
+   RESPONSIVE SPACING
+   =================================== */
+
+@media (max-width: 768px) {
+  /* Reduce padding on mobile */
+  .container,
+  .page-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Reduce margins */
+  section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  /* Smaller gaps */
+  .gap-6 {
+    gap: 1rem;
+  }
+  
+  .gap-4 {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container,
+  .page-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  section {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* ===================================
+   RESPONSIVE TYPOGRAPHY
+   =================================== */
+
+@media (max-width: 768px) {
+  h1,
+  .h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  h2,
+  .h2 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+  
+  h3,
+  .h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+  
+  h4,
+  .h4 {
+    font-size: 1.125rem;
+  }
+  
+  p,
+  .text-base {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+  
+  .text-sm {
+    font-size: 0.8125rem;
+  }
+  
+  .text-xs {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1,
+  .h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2,
+  .h2 {
+    font-size: 1.375rem;
+  }
+  
+  h3,
+  .h3 {
+    font-size: 1.125rem;
+  }
+  
+  h4,
+  .h4 {
+    font-size: 1rem;
+  }
+}
+
+/* ===================================
+   RESPONSIVE MODALS
+   =================================== */
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 0.5rem;
+  }
+  
+  .modal-content {
+    max-width: 100%;
+    max-height: 95vh;
+    margin: auto;
+  }
+  
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 1rem;
+  }
+  
+  .modal-footer {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .modal-footer .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-overlay {
+    padding: 0;
+  }
+  
+  .modal-content {
+    border-radius: 0;
+    max-height: 100vh;
+  }
+}
+
+/* ===================================
+   RESPONSIVE FORMS
+   =================================== */
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    flex-direction: column;
+  }
+  
+  .form-group {
+    width: 100%;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .form-actions .btn {
+    width: 100%;
+  }
+}
+
+/* ===================================
+   RESPONSIVE CARDS
+   =================================== */
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1.25rem;
+  }
+  
+  .card-header {
+    padding: 1rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .card-footer {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1rem;
+    border-radius: 0.75rem;
+  }
+}
+
+/* ===================================
+   RESPONSIVE BUTTONS
+   =================================== */
+
+@media (max-width: 768px) {
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn-group .btn {
+    width: 100%;
+  }
+  
+  .btn-large {
+    padding: 0.875rem 1.75rem;
+    font-size: 0.9375rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-small {
+    padding: 0.625rem 1rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* ===================================
+   RESPONSIVE UTILITIES
+   =================================== */
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Show only on mobile */
+.show-mobile {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .show-mobile {
+    display: block !important;
+  }
+  
+  .show-mobile-flex {
+    display: flex !important;
+  }
+  
+  .show-mobile-inline {
+    display: inline !important;
+  }
+}
+
+/* ===================================
+   RESPONSIVE OVERFLOW
+   =================================== */
+
+@media (max-width: 768px) {
+  /* Horizontal scroll for tables and code blocks */
+  .overflow-auto-mobile {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent text overflow */
+  .text-truncate-mobile {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* ===================================
+   SAFE AREA INSETS (for notched devices)
+   =================================== */
+
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+  
+  .header {
+    padding-top: max(0px, env(safe-area-inset-top));
+  }
+  
+  .footer {
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}
+
+/* ===================================
+   LANDSCAPE ORIENTATION FIXES
+   =================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .page-header {
+    margin-bottom: 1rem;
+  }
+  
+  section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+/* ===================================
+   PRINT STYLES
+   =================================== */
+
+@media print {
+  .header,
+  .footer,
+  .nav,
+  .btn,
+  button,
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .page-container {
+    max-width: 100%;
+    padding: 0;
+  }
+}
